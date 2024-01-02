@@ -1,56 +1,25 @@
-.banner {
-  height: 600px;
-  background-image: url("/assets/images/banner.jpg"); /* Updated image path */
+/* .banner {
+  height: 550px;
+
+  background: linear-gradient(119deg, #752348 -2.11%, rgb(40, 16, 95) 63.58%);
   background-size: cover;
   background-position: center;
-}
+} */
 
+/* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), */
+/* url("../../../assets/images/banner/momento.png"); */
+/*  */
 .bannerContainer {
-  height: 100%;
-  /* opacity: 0.8; */
-  background: linear-gradient(119deg, #ed4690 -2.11%, #52c 63.58%);
-}
-
-/* Carousel */
-.carouselSlide {
-  position: relative;
+  height: 550px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-}
-
-.carouselContent {
-  text-align: center;
-  z-index: 1;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.content {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background-color: #4caf50;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-}
-
-.carouselImage {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease-in-out;
-}
-
-.currentImage {
-  transform: scale(1.1);
+  gap: 40px;
+  align-items: center;
+  background-image: linear-gradient(
+      rgba(119, 1, 93, 0.767),
+      rgba(48, 21, 99, 0.781)
+    ),
+    url("/assets/images/banner.jpg");
+  background-color: rgb(191, 16, 235);
 }

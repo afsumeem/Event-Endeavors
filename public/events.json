@@ -1,0 +1,81 @@
+[
+    {
+      "category": "Music Concert",
+      "title": "Summer Beats Festival",
+      "date": "02 July 2024 04:00:00",
+      "venue": "Sunset Park Amphitheater",
+      "details": "Experience the hottest music acts in an outdoor extravaganza. From rock to pop, this festival has it all!",
+      "image": "https://i.ibb.co/txTy8Wr/event1.jpg"
+    },
+    {
+      "category": "Tech Conference",
+      "title": "InnovateX Tech Summit",
+      "date": "22 September 2024 04:00:00",
+      "venue": "Tech Hub Convention Center",
+      "details": "Join industry leaders and innovators for a day filled with cutting-edge technology discussions and networking opportunities.",
+      "image": "https://i.ibb.co/zrhm1JK/event2.jpg"
+    },
+    {
+      "category": "Food Festival",
+      "title": "Taste of the World Culinary Expo",
+      "date": "05 August 2024 04:00:00",
+      "venue": "City Center Pavilion",
+      "details": "Indulge your taste buds with a world tour of flavors. From street food to gourmet cuisine, it's a feast for foodies!",
+      "image": "https://i.ibb.co/1sxHfVG/events3.jpg"
+     
+    },
+    {
+      "category": "Sports Event",
+      "title": "Grand Slam Tennis Open",
+      "date": "10 June 2024 04:00:00",
+      "venue": "Greenfield Tennis Stadium",
+      "details": "Witness the excitement of top-tier tennis players battling it out for the prestigious Grand Slam title.",
+      "image": "https://i.ibb.co/k6z9ztJ/event4.jpg"
+    },
+    {
+      "category": "Art Exhibition",
+      "title": "Canvas & Colors Showcase",
+      "date": "30 August 2024 04:00:00",
+      "venue": "Metropolitan Art Gallery",
+      "details": "Immerse yourself in a world of artistic expression. This exhibition features works from renowned and emerging artists.",
+      "image": "https://i.ibb.co/px2QXSc/events5.jpg"
+    },
+    {
+      "category": "Comedy Show",
+      "title": "Laugh-a-Palooza Comedy Night",
+      "date": "08 July 2024 04:00:00",
+      "venue": "Comedy Club Central",
+      "details": "Get ready for a night of non-stop laughter with some of the funniest comedians in the business.",
+      "image": "https://i.ibb.co/hWHJZ9J/events6.jpg"
+    }
+  ]
+  
+
+//   [
+//     {
+//       "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+//       "title": "CEO",
+//       "name": "John Doe"
+//     },
+//     {
+//       "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+//       "title": "MANAGER",
+//       "name": "Jane Smith"
+//     },
+//     {
+//       "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+//       "title": "AGENCY FOUNDER",
+//       "name": "Mike Jones"
+//     },
+//     {
+//       "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+//       "title": "COORDINATOR",
+//       "name": "Sara Williams"
+//     },
+//     {
+//         "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+//         "title": "CREATIVE DIRECTOR",
+//         "name": "Julia Jameson"
+//       }
+//   ]
+  
