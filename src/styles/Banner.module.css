@@ -1,0 +1,56 @@
+.banner {
+  height: 600px;
+  background-image: url("/assets/images/banner.jpg"); /* Updated image path */
+  background-size: cover;
+  background-position: center;
+}
+
+.bannerContainer {
+  height: 100%;
+  /* opacity: 0.8; */
+  background: linear-gradient(119deg, #ed4690 -2.11%, #52c 63.58%);
+}
+
+/* Carousel */
+.carouselSlide {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselContent {
+  text-align: center;
+  z-index: 1;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.content {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.carouselImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.currentImage {
+  transform: scale(1.1);
+}
