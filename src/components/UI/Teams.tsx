@@ -15,7 +15,7 @@ interface IProps {
 const Teams = ({ teams }: IProps) => {
   return (
     <div>
-      <h2 className="text-center my-14 text-4xl font-bold">Upcoming Events</h2>
+      <h2 className="text-center my-14 text-4xl font-bold">Our Teams</h2>
 
       <div className="gap-4 grid grid-cols-1 sm:grid-cols-5">
         {teams.map((team, i) => (

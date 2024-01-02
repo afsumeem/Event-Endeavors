@@ -3,6 +3,7 @@ import { BsTelephone } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import styles from "../../styles/Header.module.css";
 import { useEffect, useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 interface TimeRemaining {
   days: number;
@@ -12,6 +13,8 @@ interface TimeRemaining {
 }
 
 const Header: React.FC = () => {
+  const { data: session } = useSession();
+
   const calculateTimeRemaining = (): TimeRemaining => {
     const now = new Date().getTime();
     const difference = new Date("January 31, 2024 23:59:59").getTime() - now;
@@ -112,28 +115,39 @@ const Header: React.FC = () => {
             <Link href="/about" className="text-white">
               About
             </Link>
-            <Link href="/contact" className="text-white">
-              Contact
-            </Link>
+            {session?.user ? (
+              <button onClick={() => signOut()} className="text-white">
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link href="/login" className="text-white">
+                  Login
+                </Link>
+                <Link href="/signup" className="text-white">
+                  SignUp
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Breadcrumb for small devices */}
-          <div className="lg:hidden space-x-4">
-            <Link href="/" className="text-white">
+          {/* <div className="lg:hidden space-x-4"> */}
+          {/* <Link href="/" className="text-white">
               Home
-            </Link>
+            </Link> */}
 
-            <Link href="/events" className="text-white">
+          {/* <Link href="/events" className="text-white">
               Events
-            </Link>
-            <Link href="/about" className="text-white">
+            </Link> */}
+          {/* <Link href="/about" className="text-white">
               About
             </Link>
             <Link href="/contact" className="text-white">
               Contact
-            </Link>
-            {/* Add similar links for other pages */}
-          </div>
+            </Link> */}
+          {/* Add similar links for other pages */}
+          {/* </div> */}
         </div>
       </nav>
     </>
