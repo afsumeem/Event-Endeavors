@@ -22,14 +22,14 @@ const Banner = () => {
           ]}
         />
       </h2>
-      <p className=" p-4 w-full md:w-2/3 lg:w-1/2 text-white text-justify 2xl:text-2xl">
+      <p className=" p-1 md:p-4 w-full md:w-2/3 lg:w-1/2 text-white text-justify 2xl:text-2xl">
         Explore a diverse range of events curated just for you. From captivating
         cultural festivals to heart-pounding live performances, we have got
         something for every taste and interest. Our events promise to captivate
         your senses and leave you craving for more. Our events promise to
         captivate your senses and leave you craving for more.
       </p>
-      <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
         <Button
           as={Link}
           href="/events"
