@@ -1,9 +1,19 @@
-import Link from "next/link";
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import styles from "../../styles/Header.module.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarMenuToggle,
+  NavbarMenuItem,
+  NavbarMenu,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
 
 interface TimeRemaining {
   days: number;
@@ -13,6 +23,19 @@ interface TimeRemaining {
 }
 
 const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
   const { data: session } = useSession();
 
   const calculateTimeRemaining = (): TimeRemaining => {
@@ -47,109 +70,161 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div>
-        {/* top bar */}
+      {/* top bar */}
 
-        <div
-          className={`${styles.topBarContainer} flex justify-around flex-col md:flex-row items-center`}
-        >
-          <h4 className="flex items-center gap-1 ">
-            {" "}
-            <BsTelephone /> <span> +8801723456789</span>
-          </h4>
-          <div className={styles.topBar}>
-            <h4>Upcoming Event</h4>
-            {/* event timer */}
-            <div className={styles.eventTime}>
-              <div className={styles.countdownBox}>
-                <div className={styles.countdownValue}>
-                  {timeRemaining.days}
-                </div>
-              </div>
-              <div className="text-white"> : </div>
-              <div className={styles.countdownBox}>
-                <div className={styles.countdownValue}>
-                  {timeRemaining.hours}
-                </div>
-              </div>
-              <div className="text-white"> : </div>
-              <div className={styles.countdownBox}>
-                <div className={styles.countdownValue}>
-                  {timeRemaining.minutes}
-                </div>
-              </div>
-              <div className="text-white"> : </div>
-              <div className={styles.countdownBox}>
-                {" "}
-                <div className={styles.countdownValue}>
-                  {timeRemaining.seconds}
-                </div>
+      <div
+        className={`${styles.topBarContainer} flex justify-around flex-col md:flex-row items-center`}
+      >
+        <h4 className="flex items-center gap-1 ">
+          {" "}
+          <BsTelephone /> <span> +8801723456789</span>
+        </h4>
+        <div className={styles.topBar}>
+          <h4>Upcoming Event</h4>
+          {/* event timer */}
+          <div className={styles.eventTime}>
+            <div className={styles.countdownBox}>
+              <div className={styles.countdownValue}>{timeRemaining.days}</div>
+            </div>
+            <div className="text-white"> : </div>
+            <div className={styles.countdownBox}>
+              <div className={styles.countdownValue}>{timeRemaining.hours}</div>
+            </div>
+            <div className="text-white"> : </div>
+            <div className={styles.countdownBox}>
+              <div className={styles.countdownValue}>
+                {timeRemaining.minutes}
               </div>
             </div>
-
-            {/* event timer */}
-
-            <button> View Event </button>
+            <div className="text-white"> : </div>
+            <div className={styles.countdownBox}>
+              {" "}
+              <div className={styles.countdownValue}>
+                {timeRemaining.seconds}
+              </div>
+            </div>
           </div>
-          <h4 className="flex items-center gap-1 ">
-            <MdOutlineEmail /> <span> admin@event.com</span>
-          </h4>
+
+          {/* event timer */}
+
+          <button> View Event </button>
         </div>
+        <h4 className="flex items-center gap-1 ">
+          <MdOutlineEmail /> <span> admin@event.com</span>
+        </h4>
       </div>
 
-      <nav className="bg-gray-800 p-4">
-        <div className="container mx-auto flex items-center justify-between">
-          {/* Logo on the left side */}
-          <Link href="/" className="text-white text-xl font-bold">
-            Event Endeavors
-          </Link>
-
-          {/* NavLinks on the right side */}
-          <div className="hidden lg:flex space-x-4">
-            <Link href="/" className="text-white">
+      <Navbar
+        isBordered
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={setIsMenuOpen}
+        className="justify-between w-full"
+      >
+        <NavbarContent justify="start">
+          <NavbarBrand>
+            <p className="font-bold text-xl text-[#fd614a]">Event Endeavors</p>
+          </NavbarBrand>
+        </NavbarContent>
+        <NavbarContent className="hidden md:flex gap-2" justify="center">
+          <NavbarItem>
+            <Link color="foreground" href="/">
               Home
             </Link>
-            <Link href="/events" className="text-white">
-              Events
-            </Link>
-            <Link href="/about" className="text-white">
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/about">
               About
             </Link>
-            {session?.user ? (
-              <button onClick={() => signOut()} className="text-white">
-                Logout
-              </button>
-            ) : (
-              <>
-                <Link href="/login" className="text-white">
-                  Login
-                </Link>
-                <Link href="/signup" className="text-white">
-                  SignUp
-                </Link>
-              </>
-            )}
-          </div>
-
-          {/* Breadcrumb for small devices */}
-          {/* <div className="lg:hidden space-x-4"> */}
-          {/* <Link href="/" className="text-white">
-              Home
-            </Link> */}
-
-          {/* <Link href="/events" className="text-white">
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/events" aria-current="page">
               Events
-            </Link> */}
-          {/* <Link href="/about" className="text-white">
-              About
             </Link>
-            <Link href="/contact" className="text-white">
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/venues">
+              Venues
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/reviews">
+              Reviews
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/contact">
               Contact
-            </Link> */}
-          {/* Add similar links for other pages */}
-          {/* </div> */}
-        </div>
-      </nav>
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+
+        <NavbarContent justify="end" className="hidden md:flex">
+          <NavbarItem>
+            <Link href="/login" className="text-[#fd614a]">
+              Login
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button
+              as={Link}
+              className="text-[#fd614a]"
+              href="/signup"
+              variant="flat"
+            >
+              Sign Up
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+
+        <NavbarContent className="md:hidden" justify="end">
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          />
+        </NavbarContent>
+
+        <NavbarMenu className="mt-2 pt-16 h-auto w-1/2">
+          <NavbarItem>
+            <Link color="foreground" href="/">
+              Home
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/about">
+              About
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/events" aria-current="page">
+              Events
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="venues">
+              Venues
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/reviews">
+              Reviews
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/contact">
+              Contact
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link className="text-[#fd614a]" href="/login">
+              Login
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link className="text-[#fd614a]" href="/signup">
+              SignUp
+            </Link>
+          </NavbarItem>
+        </NavbarMenu>
+      </Navbar>
     </>
   );
 };

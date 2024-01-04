@@ -9,6 +9,8 @@ import {
 } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import auth from "@/firebase/firebase.auth";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 //
 
@@ -20,6 +22,10 @@ interface IFormInput {
 //
 const LoginPage = () => {
   const router = useRouter();
+  //
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
@@ -42,41 +48,55 @@ const LoginPage = () => {
     }
   };
   return (
-    <div>
-      Welcome To Event Endeavors
-      {/* <FaGoogle
-        onClick={() =>
-          signIn("google", {
-            callbackUrl: "http://localhost:3000/profile/",
-          })
-        }
-      /> */}
-      <div className="w-full flex flex-col gap-4">
-        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+    <div className="w-full flex flex-col gap-4 justify-center items-center mt-20">
+      <div className="flex flex-col justify-center items-center flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 bg-indigo-100 w-1/2 d-block m-auto p-20">
+        <h2 className="font-bold text-3xl mt-5 text-center">
+          Login To Continue
+        </h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            {...register("email", { required: true })}
+            type="email"
+            variant="underlined"
+            label="Email"
+            placeholder="Enter your email"
+            className="w-80 h-14 text-2xl"
+          />
+          <Input
+            {...register("password", { required: true })}
+            label="Password"
+            variant="underlined"
+            placeholder="Enter your password"
+            endContent={
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={toggleVisibility}
+              >
+                {isVisible ? (
+                  <FaEye className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <FaEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisible ? "text" : "password"}
+            className="max-w-xs"
+          />
+          <button
+            type="submit"
+            className="p-3 bg-indigo-800 d-block m-auto text-white mt-4 rounded-md w-full"
+          >
+            Login
+          </button>
           <FaGoogle
             onClick={() => {
               signInWithGoogle();
               router.push("/profile");
             }}
+            className="my-4 text-3xl d-block m-auto"
           />
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              {...register("email", { required: true })}
-              type="email"
-              variant="underlined"
-              label="Email"
-              placeholder="Enter your email"
-            />
-            <Input
-              {...register("password", { required: true })}
-              type="password"
-              variant="underlined"
-              label="Password"
-              placeholder="Enter your password"
-            />
-            <button type="submit">Login</button>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
   );
