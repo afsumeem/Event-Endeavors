@@ -90,9 +90,14 @@ const LoginPage = () => {
             Login
           </button>
           <FaGoogle
-            onClick={() => {
-              signInWithGoogle();
-              router.push("/profile");
+            onClick={async () => {
+              try {
+                await signInWithGoogle();
+
+                router.push("/profile");
+              } catch (error) {
+                console.error("Error occurred during login:", error);
+              }
             }}
             className="my-4 text-3xl d-block m-auto"
           />

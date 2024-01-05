@@ -15,9 +15,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
 } from "@nextui-org/react";
 import { MdOutlineEmail } from "react-icons/md";
 

@@ -1,12 +1,5 @@
 import { ITeams } from "@/types/globals";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Image,
-  Button,
-} from "@nextui-org/react";
+import Image from "next/image";
 
 interface IProps {
   teams: ITeams[];
@@ -15,31 +8,25 @@ interface IProps {
 const Teams = ({ teams }: IProps) => {
   return (
     <div>
-      <h2 className="text-center my-14 text-4xl font-bold">Our Teams</h2>
+      <h2 className="text-center my-14 text-2xl md:text-3xl lg:text-4xl font-bold text-[#fd614a]">
+        Our Teams
+      </h2>
 
-      <div className="gap-4 grid grid-cols-1 sm:grid-cols-5">
+      <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {teams.map((team, i) => (
-          <Card
-            shadow="sm"
-            key={i}
-            isPressable
-            onPress={() => console.log("item pressed")}
-          >
-            <CardBody className="overflow-visible p-0">
-              <Image
-                shadow="sm"
-                radius="lg"
-                width="100%"
-                alt={team.name}
-                className="w-full object-cover h-[140px]"
-                src={team.image}
-              />
-            </CardBody>
-            <CardFooter className="text-small justify-between">
-              <b>{team.name}</b>
-              <p className="text-default-500">{team.title}</p>
-            </CardFooter>
-          </Card>
+          <div key={i}>
+            <Image
+              src={team.image}
+              height={150}
+              width={150}
+              alt="event team image"
+              className="rounded-full block m-auto"
+            />
+            <h2 className="text-center my-2 text-[#fd614a] uppercase">
+              {team.name}
+            </h2>
+            <p className=" text-center text-xs lowercase">{team.title}</p>
+          </div>
         ))}
       </div>
     </div>

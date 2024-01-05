@@ -2,18 +2,27 @@ import { BsTelephone } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import styles from "../../styles/Header.module.css";
 import React, { useEffect, useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+// import { useSession, signIn, signOut } from "next-auth/react";
 import {
   Navbar,
   NavbarBrand,
   NavbarMenuToggle,
-  NavbarMenuItem,
+  // NavbarMenuItem,
   NavbarMenu,
   NavbarContent,
   NavbarItem,
   Link,
   Button,
+  DropdownItem,
+  DropdownMenu,
+  Avatar,
+  Dropdown,
+  DropdownTrigger,
 } from "@nextui-org/react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import auth from "@/firebase/firebase.auth";
+
+//
 
 interface TimeRemaining {
   days: number;
@@ -23,20 +32,25 @@ interface TimeRemaining {
 }
 
 const Header: React.FC = () => {
+  const [signOut, loading, error] = useSignOut(auth);
+
+  const [user] = useAuthState(auth);
+  //
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
-  const { data: session } = useSession();
+  // const menuItems = [
+  //   "Profile",
+  //   "Dashboard",
+  //   "Activity",
+  //   "Analytics",
+  //   "System",
+  //   "Deployments",
+  //   "My Settings",
+  //   "Team Settings",
+  //   "Help & Feedback",
+  //   "Log Out",
+  // ];
+  // const { data: session } = useSession();
 
   const calculateTimeRemaining = (): TimeRemaining => {
     const now = new Date().getTime();
@@ -107,20 +121,24 @@ const Header: React.FC = () => {
 
           {/* event timer */}
 
-          <button> View Event </button>
+          <Button as={Link} href="/events" className="bg-inherit text-white">
+            View Event
+          </Button>
         </div>
         <h4 className="flex items-center gap-1 ">
           <MdOutlineEmail /> <span> admin@event.com</span>
         </h4>
       </div>
 
+      {/* navigation bar */}
+
       <Navbar
         isBordered
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
-        className="justify-between w-full"
+        className=" w-full"
       >
-        <NavbarContent justify="start">
+        <NavbarContent justify="start" className="ml-auto">
           <NavbarBrand>
             <p className="font-bold text-xl text-[#fd614a]">Event Endeavors</p>
           </NavbarBrand>
@@ -158,24 +176,7 @@ const Header: React.FC = () => {
           </NavbarItem>
         </NavbarContent>
 
-        <NavbarContent justify="end" className="hidden md:flex">
-          <NavbarItem>
-            <Link href="/login" className="text-[#fd614a]">
-              Login
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Button
-              as={Link}
-              className="text-[#fd614a]"
-              href="/signup"
-              variant="flat"
-            >
-              Sign Up
-            </Button>
-          </NavbarItem>
-        </NavbarContent>
-
+        {/*  */}
         <NavbarContent className="md:hidden" justify="end">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -213,17 +214,85 @@ const Header: React.FC = () => {
               Contact
             </Link>
           </NavbarItem>
-          <NavbarItem>
-            <Link className="text-[#fd614a]" href="/login">
-              Login
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link className="text-[#fd614a]" href="/signup">
-              SignUp
-            </Link>
-          </NavbarItem>
+
+          {!user?.email && (
+            <>
+              <NavbarItem>
+                <Link className="text-[#fd614a]" href="/login">
+                  Login
+                </Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link className="text-[#fd614a]" href="/signup">
+                  SignUp
+                </Link>
+              </NavbarItem>
+            </>
+          )}
         </NavbarMenu>
+        {/*  */}
+
+        {user?.email ? (
+          <NavbarContent as="div" justify="end">
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform"
+                  color="secondary"
+                  name="Jason Hughes"
+                  size="sm"
+                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile" className="h-14 gap-2">
+                  <p className="">Signed in as</p>
+                  <p className="font-semibold text-[#fd614a]">{user?.email}</p>
+                </DropdownItem>
+                <DropdownItem key="settings">
+                  <Link href="/profile" color="foreground">
+                    Profile
+                  </Link>
+                </DropdownItem>
+                <DropdownItem key="settings">
+                  <Link href="/dashboard" color="foreground">
+                    Dashboard
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem key="logout" color="danger">
+                  <Button
+                    className="text-[#fd614a]"
+                    onClick={() => signOut()}
+                    variant="flat"
+                  >
+                    Logout
+                  </Button>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarContent>
+        ) : (
+          <NavbarContent className="hidden md:flex " justify="end">
+            <NavbarItem>
+              <Link href="/login" className="text-[#fd614a]">
+                Login
+              </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                as={Link}
+                className="text-[#fd614a]"
+                href="/signup"
+                variant="flat"
+              >
+                Sign Up
+              </Button>
+            </NavbarItem>
+          </NavbarContent>
+        )}
       </Navbar>
     </>
   );

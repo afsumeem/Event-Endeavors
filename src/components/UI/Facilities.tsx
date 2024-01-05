@@ -4,12 +4,12 @@ import Image from "next/image";
 const Facilities = () => {
   return (
     <div className="grid grid-cols-12 gap-4 mt-10 px-10">
-      <div className="col-span-12 md:col-span-6 lg:col-span-3 border p-6">
+      <div className="col-span-12 md:col-span-6 lg:col-span-3 border border-[#f3f3f3] p-4">
         <Image
           src="/assets/images/facilities1.png"
           alt="facilityImg"
-          width={100}
-          height={100}
+          width={80}
+          height={80}
           className="d-block m-auto my-7"
         />
 
@@ -29,12 +29,12 @@ const Facilities = () => {
           About US
         </Button>
       </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-3 border p-6">
+      <div className="col-span-12 md:col-span-6 lg:col-span-3 border p-4 border-[#f3f3f3]">
         <Image
           src="/assets/images/facilities2.png"
           alt="facilityImg"
-          width={100}
-          height={100}
+          width={80}
+          height={80}
           className="d-block m-auto"
         />
         <h3 className="text-[#fd614a] font-bold text-center mt-10 mb-4">
@@ -53,12 +53,12 @@ const Facilities = () => {
           Our Venues
         </Button>
       </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-3 border p-6">
+      <div className="col-span-12 md:col-span-6 lg:col-span-3 border p-4 border-[#f3f3f3]">
         <Image
           src="/assets/images/facilities3.png"
           alt="facilityImg"
-          width={100}
-          height={100}
+          width={80}
+          height={80}
           className="d-block m-auto"
         />
         <h3 className="text-[#fd614a] font-bold text-center mt-10 mb-4">
@@ -77,12 +77,12 @@ const Facilities = () => {
           Our Events
         </Button>
       </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-3 border p-6">
+      <div className="col-span-12 md:col-span-6 lg:col-span-3 border p-4 border-[#f3f3f3]">
         <Image
           src="/assets/images/facilities4.png"
           alt="facilityImg"
-          width={100}
-          height={100}
+          width={80}
+          height={80}
           className="d-block m-auto"
         />
         <h3 className="text-[#fd614a] font-bold text-center mt-10 mb-4">
