@@ -1,6 +1,6 @@
 import Dashboard from "@/components/Layouts/Dashboard";
 import RootLayout from "@/components/Layouts/RootLayout";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Textarea } from "@nextui-org/react";
 import React from "react";
 import { MdOutlineEmail } from "react-icons/md";
 
@@ -11,29 +11,34 @@ const AddNewEvent = () => {
       <div>
         <Input
           autoFocus
-          label="Name"
-          placeholder="Enter your name"
+          label="Title"
+          placeholder="Enter the event Title"
           variant="bordered"
         />
         <Input
           autoFocus
-          label="Email"
-          endContent={
-            <MdOutlineEmail className="text-xl text-default-400 pointer-events-none flex-shrink-0" />
-          }
-          placeholder="Enter your email"
+          label="Category"
+          placeholder="Enter the event category"
           variant="bordered"
+        />
+        <Input autoFocus label="Venue" placeholder="Venue" variant="bordered" />
+        <Textarea
+          variant="bordered"
+          label="Description"
+          placeholder="Enter your description"
+          className="col-span-12 md:col-span-6 mb-6 md:mb-0"
         />
         <Input
           autoFocus
-          label="Address"
-          placeholder="Enter your Present Address"
+          label="Image Link"
+          placeholder="Event details"
           variant="bordered"
         />
         <Input
+          type="datetime-local"
           autoFocus
-          label="Contact"
-          placeholder="Enter your Contact No."
+          label="Date"
+          placeholder="Event date"
           variant="bordered"
         />
 
