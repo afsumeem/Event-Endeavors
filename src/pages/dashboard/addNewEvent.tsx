@@ -35,11 +35,6 @@ const AddNewEvent = () => {
   //
 
   const onSubmit: SubmitHandler<AddEventValues> = async (data) => {
-    // if (data) {
-    //   alert("event added successfully");
-    //   reset();
-    // }
-
     try {
       const options = {
         title: data.title,

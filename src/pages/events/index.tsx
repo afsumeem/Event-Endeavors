@@ -23,6 +23,10 @@ import { MdOutlineEmail } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hook";
 import { useGetEventsQuery } from "@/redux/features/events/eventApi";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "@/firebase/firebase.auth";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { usePostRegistrationMutation } from "@/redux/features/guests/guestApi";
 
 //
 
@@ -30,11 +34,56 @@ interface IProps {
   // events: IEvents[];
   categories: string[];
 }
-
+type RegistrationValues = {
+  title: string;
+  name: string;
+  guestEmail: string;
+  address: string;
+  contact: string;
+  admin: string;
+};
 //
 
 const AllEvents = ({ categories }: IProps) => {
+  const [user] = useAuthState(auth);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedEvent, setSelectedEvent] = useState<IEvents | null>(null);
+
+  const [guestRegister, options] = usePostRegistrationMutation();
+  const { register, handleSubmit, reset } = useForm<RegistrationValues>();
+
+  const onSubmit: SubmitHandler<RegistrationValues> = async (data) => {
+    try {
+      // Extract email ID from data.guestEmail
+      const emailParts = data.guestEmail.split("@");
+      const emailId = emailParts[0];
+
+      // Generate a random serial (you can customize this logic)
+      const generatedSerial = Math.floor(Math.random() * 10000)
+        .toString()
+        .padStart(4, "0");
+
+      // Combine emailId and generatedSerial to create guestId
+      const guestId = `${emailId}${generatedSerial}`;
+
+      const options = {
+        title: data.title,
+        name: data.name,
+        guestEmail: data.guestEmail,
+        address: data.address,
+        contact: data.contact,
+        admin: data.admin,
+        guestId: guestId,
+      };
+      await guestRegister(options);
+      alert("Registration successful");
+      console.log(data);
+      reset();
+    } catch (error) {
+      console.error("Error occurred during event registration:", error);
+    }
+  };
+
   // const dispatch = useAppDispatch();
 
   //search and filter functionality for events
@@ -50,6 +99,11 @@ const AllEvents = ({ categories }: IProps) => {
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectCategory(e.target.value);
+  };
+
+  const handleRegisterClick = (event: IEvents) => {
+    setSelectedEvent(event);
+    onOpen();
   };
   return (
     <div>
@@ -130,7 +184,7 @@ const AllEvents = ({ categories }: IProps) => {
                     color="default"
                     radius="lg"
                     size="sm"
-                    onPress={onOpen}
+                    onPress={() => handleRegisterClick(event)}
                   >
                     Register Now
                   </Button>
@@ -144,46 +198,70 @@ const AllEvents = ({ categories }: IProps) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Registration Form
-              </ModalHeader>
-              <ModalBody>
-                <Input
-                  autoFocus
-                  label="Name"
-                  placeholder="Enter your name"
-                  variant="bordered"
-                />
-                <Input
-                  autoFocus
-                  label="Email"
-                  endContent={
-                    <MdOutlineEmail className="text-xl text-default-400 pointer-events-none flex-shrink-0" />
-                  }
-                  placeholder="Enter your email"
-                  variant="bordered"
-                />
-                <Input
-                  autoFocus
-                  label="Address"
-                  placeholder="Enter your Present Address"
-                  variant="bordered"
-                />
-                <Input
-                  autoFocus
-                  label="Contact"
-                  placeholder="Enter your Contact No."
-                  variant="bordered"
-                />
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
-                  Cancel
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Register
-                </Button>
-              </ModalFooter>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <ModalHeader className="flex flex-col gap-1">
+                  Registration Form
+                </ModalHeader>
+                <ModalBody>
+                  <Input
+                    {...register("title", { required: true })}
+                    autoFocus
+                    value={selectedEvent?.title ?? ""}
+                    label="Event Title"
+                    placeholder="Event Title"
+                    variant="bordered"
+                  />
+                  <Input
+                    {...register("name", { required: true })}
+                    autoFocus
+                    label="Name"
+                    placeholder="Enter your name"
+                    variant="bordered"
+                  />
+                  <Input
+                    {...register("guestEmail", { required: true })}
+                    autoFocus
+                    label="Email"
+                    value={user?.email ?? ""}
+                    endContent={
+                      <MdOutlineEmail className="text-xl text-default-400 pointer-events-none flex-shrink-0" />
+                    }
+                    placeholder="Enter your email"
+                    variant="bordered"
+                  />
+                  <Input
+                    {...register("address", { required: true })}
+                    autoFocus
+                    label="Address"
+                    placeholder="Enter your Present Address"
+                    variant="bordered"
+                  />
+                  <Input
+                    {...register("contact", { required: true })}
+                    autoFocus
+                    label="Contact"
+                    placeholder="Enter your Contact No."
+                    variant="bordered"
+                  />
+                  <Input
+                    className="hidden"
+                    {...register("admin", { required: true })}
+                    autoFocus
+                    value={selectedEvent?.admin ?? ""}
+                    label="Contact"
+                    placeholder="Admin Email"
+                    variant="bordered"
+                  />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="flat" onPress={onClose}>
+                    Cancel
+                  </Button>
+                  <Button type="submit" color="primary" onPress={onClose}>
+                    Register
+                  </Button>
+                </ModalFooter>
+              </form>
             </>
           )}
         </ModalContent>

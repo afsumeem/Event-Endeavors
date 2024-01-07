@@ -33,7 +33,7 @@ const DashboardUI = () => {
               <div className="absolute top-32 left-0 bg-gray-200 p-2 mt-2">
                 {/* Dropdown menu links */}
                 <a
-                  href="#"
+                  href="/home"
                   className="block py-2 px-4 text-sm hover:bg-gray-300"
                 >
                   Home

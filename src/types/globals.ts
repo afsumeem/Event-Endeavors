@@ -6,6 +6,7 @@ export interface IEvents {
   venue: string;
   details: string;
   date: string;
+  admin?: string;
 }
 
 export interface ITeams {
