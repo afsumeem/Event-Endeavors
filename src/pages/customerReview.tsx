@@ -1,16 +1,19 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import { IReviews } from "@/types/globals";
 import Head from "next/head";
-import { Button, Image, Input, Textarea } from "@nextui-org/react";
+import { Button, Image, Input, Spinner, Textarea } from "@nextui-org/react";
 import React, { useState } from "react";
-import Slider from "react-slick";
 import ReactStars from "react-stars";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Slider as RatingSlider } from "@nextui-org/react";
+import { Slider } from "@nextui-org/react";
 import {
   useGetReviewsQuery,
   usePostReviewMutation,
 } from "@/redux/features/reviews/reviewsApi";
+import usePrivateRoute from "@/privateRoute/layout";
+import Swal from "sweetalert2";
+
+//
 
 type ReviewValues = {
   name: string;
@@ -40,7 +43,11 @@ const CustomerReview = () => {
         rating: data.rating,
       };
       await guestReview(options);
-      alert("Review added successful");
+      Swal.fire({
+        title: "Good job!",
+        text: "Review added successfully!",
+        icon: "success",
+      });
 
       reset();
     } catch (error) {
@@ -56,15 +63,12 @@ const CustomerReview = () => {
       setInputValue(selectedValue);
     }
   };
-  const settings = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 1000,
-    autoplaySpeed: 3000,
-    cssEase: "linear",
-  };
+
+  const loadingPage = usePrivateRoute();
+
+  if (loadingPage) {
+    return <Spinner />;
+  }
 
   return (
     <div>
@@ -137,7 +141,7 @@ const CustomerReview = () => {
               variant="bordered"
               className=" mb-4 mt-4"
             />
-            <RatingSlider
+            <Slider
               {...register("rating")}
               size="md"
               step={1}
@@ -154,24 +158,23 @@ const CustomerReview = () => {
 
           <Button
             type="submit"
-            className="text-white bg-[#fd614a] rounded-md w-full"
+            className="text-white bg-[#fd614a] rounded-md w-full mb-3"
           >
             Submit
           </Button>
         </form>
       </div>
       <hr />
-      <div className=" pt-10 px-10">
+      <div className=" pt-5 px-10">
         <h2 className="text-center my-14 text-xl md:text-2xl lg:text-3xl font-bold text-[#fd614a]">
           What our Guest Says
         </h2>
 
         <div className="m-0 md:m-10">
-          {/* <Slider {...settings} className="mx-2 md:mx-20 p-2 "> */}
           {data?.map((review: IReviews, i: any) => (
             <div
               key={i}
-              className="border border-dashed p-2 md:p-4 bg-slate-50 mb-4"
+              className="border border-dashed rounded-2xl border-[#fd624a4f] p-2  bg-[#fd624a2f] mb-4"
             >
               <div className="flex flex-col md:flex-row items-center  gap-4">
                 <div className="hover:cursor-pointer">
@@ -182,7 +185,7 @@ const CustomerReview = () => {
                   />
                 </div>
                 <div>
-                  <p className="my-4 text-center md:text-start">
+                  <p className="my-2 text-center md:text-start">
                     {review.comment}
                   </p>
                   <div className="flex justify-center md:justify-start">
@@ -195,7 +198,7 @@ const CustomerReview = () => {
                     />
                   </div>
 
-                  <h2 className="uppercase mt-4 font-bold text-[#fd614a] text-center md:text-start">
+                  <h2 className="uppercase mt-4 font-bold text-[#fd614a] text-center md:text-start text-sm">
                     {review.name}
                   </h2>
                   <h2 className="font-mono text-md text-center md:text-start">
@@ -205,7 +208,6 @@ const CustomerReview = () => {
               </div>
             </div>
           ))}
-          {/* </Slider> */}
         </div>
       </div>
     </div>

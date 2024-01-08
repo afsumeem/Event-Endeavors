@@ -37,7 +37,11 @@ const Banner = () => {
         >
           View Events
         </Button>
-        <Button className="border border-[#fd614a] bg-inherit text-white rounded-md">
+        <Button
+          as={Link}
+          href="/events"
+          className="border border-[#fd614a] bg-inherit text-white rounded-md"
+        >
           Register Upcoming Event
         </Button>
       </div>
