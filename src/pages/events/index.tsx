@@ -27,6 +27,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "@/firebase/firebase.auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { usePostRegistrationMutation } from "@/redux/features/guests/guestApi";
+import { useRouter } from "next/navigation";
 
 //
 
@@ -46,6 +47,7 @@ type RegistrationValues = {
 
 const AllEvents = ({ categories }: IProps) => {
   const [user] = useAuthState(auth);
+  const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedEvent, setSelectedEvent] = useState<IEvents | null>(null);
 
@@ -77,7 +79,7 @@ const AllEvents = ({ categories }: IProps) => {
       };
       await guestRegister(options);
       alert("Registration successful");
-      console.log(data);
+      router.push("/eventTicket");
       reset();
     } catch (error) {
       console.error("Error occurred during event registration:", error);

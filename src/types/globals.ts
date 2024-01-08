@@ -15,3 +15,12 @@ export interface ITeams {
   title: string;
   name: string;
 }
+
+export interface IReviews {
+  _id: string;
+  name: string;
+  designation: string;
+  comment: string;
+  image: string;
+  rating: number;
+}

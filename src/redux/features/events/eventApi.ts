@@ -19,6 +19,7 @@ const eventApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["reviews"],
     }),
   }),
 });

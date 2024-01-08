@@ -5,6 +5,6 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/",
   }),
-  tagTypes: ["events"],
+  tagTypes: ["events", "reviews"],
   endpoints: () => ({}),
 });

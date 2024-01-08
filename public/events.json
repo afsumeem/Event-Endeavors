@@ -79,3 +79,80 @@
 //       }
 //   ]
   
+
+
+// 
+
+
+[
+  {
+    "name": "John Doe",
+    "designation": "Event Attendee",
+    "comment": "Had a fantastic time at the event. Great organization and amazing atmosphere.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 5
+  },
+  {
+    "name": "Alice Smith",
+    "designation": "VIP Guest",
+    "comment": "The event exceeded my expectations. Kudos to the organizers for a job well done!",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 4.5
+  },
+  {
+    "name": "Bob Johnson",
+    "designation": "Event Participant",
+    "comment": "Enjoyed every moment. Looking forward to attending future events from this organizer.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 4
+  },
+  {
+    "name": "Emily White",
+    "designation": "Event Enthusiast",
+    "comment": "The event was a blast! Highly recommend it to everyone.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 5
+  },
+  {
+    "name": "David Brown",
+    "designation": "Frequent Event Goer",
+    "comment": "Always a pleasure attending events organized by this team. Top-notch every time.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 4.8
+  },
+  {
+    "name": "Sophia Lee",
+    "designation": "First-time Attendee",
+    "comment": "Impressed by the variety of activities. Will definitely attend again!",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 4.2
+  },
+  {
+    "name": "Michael Turner",
+    "designation": "Event Fanatic",
+    "comment": "One of the best events I've been to. Great entertainment and friendly atmosphere.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 5
+  },
+  {
+    "name": "Olivia Clark",
+    "designation": "Event Critic",
+    "comment": "A few hiccups, but overall a memorable experience. Good effort by the organizers.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 3.5
+  },
+  {
+    "name": "Daniel Rodriguez",
+    "designation": "Music Lover",
+    "comment": "The live performances were outstanding. Can't wait for the next musical event.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 4.7
+  },
+  {
+    "name": "Ella Harris",
+    "designation": "Art Connoisseur",
+    "comment": "A unique blend of art and culture. A must-attend event for art enthusiasts.",
+    "image": "https://i.ibb.co/7JtV9MP/user.jpg",
+    "rating": 4.5
+  }
+]

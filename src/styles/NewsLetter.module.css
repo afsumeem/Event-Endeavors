@@ -1,0 +1,12 @@
+.newsLetterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 450px;
+  background-image: linear-gradient(#ffffffe8, #fc9d8ea6),
+    url("/assets/images/banner3.jpg");
+  background-color: #fd614a;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

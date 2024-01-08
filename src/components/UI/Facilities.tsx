@@ -95,7 +95,7 @@ const Facilities = () => {
         </p>
         <Button
           as={Link}
-          href="/reviews"
+          href="/customerReview"
           className="bg-inherit text-[#fd614a] underline d-block m-auto w-full"
         >
           Client Reviews

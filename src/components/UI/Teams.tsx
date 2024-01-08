@@ -7,7 +7,7 @@ interface IProps {
 
 const Teams = ({ teams }: IProps) => {
   return (
-    <div>
+    <div className="mb-10">
       <h2 className="text-center my-14 text-2xl md:text-3xl lg:text-4xl font-bold text-[#fd614a]">
         Our Teams
       </h2>

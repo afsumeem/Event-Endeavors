@@ -3,19 +3,20 @@ import Banner from "@/components/UI/Banner";
 import Facilities from "@/components/UI/Facilities";
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import { IEvents, ITeams } from "@/types/globals";
+import { IEvents, IReviews, ITeams } from "@/types/globals";
 import UpcomingEvent from "@/components/UI/UpcomingEvent";
 import Teams from "@/components/UI/Teams";
 import Footer from "@/components/Shared/Footer";
+import NewsLetter from "@/components/UI/NewsLetter";
+import CustomerReview from "@/components/UI/Review";
 
 interface IProps {
-  // categories: ICategory[];
-  // projects: IProjects[];
   events: IEvents[];
   teams: ITeams[];
+  reviews: IReviews[];
 }
 
-const HomePage = ({ events, teams }: IProps) => {
+const HomePage = ({ events, teams, reviews }: IProps) => {
   return (
     <>
       <Head>
@@ -26,13 +27,27 @@ const HomePage = ({ events, teams }: IProps) => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
       </Head>
       <div>
         <Header />
         <Banner />
         <Facilities />
         <UpcomingEvent events={events} />
+
+        <CustomerReview reviews={reviews} />
         <Teams teams={teams} />
+        <NewsLetter />
         <Footer />
       </div>
     </>
@@ -48,15 +63,8 @@ export const getStaticProps: GetStaticProps<IProps> = async () => {
   const randomEvents = events.slice(0, 6);
 
   // //fetch categories
-  // const res = await fetch("https://paintxpress-server.vercel.app/categories");
-  // const categories = await res.json();
-
-  // //fetch latest projects
-  // const response = await fetch(
-  //   "https://paintxpress-server.vercel.app/projects"
-  // );
-  // const projects = await response.json();
-  // const randomProjects = projects.slice(0, 6);
+  const res = await fetch("http://localhost:5000/reviews");
+  const reviews = await res.json();
 
   //teams
 
@@ -65,10 +73,9 @@ export const getStaticProps: GetStaticProps<IProps> = async () => {
 
   return {
     props: {
-      // categories: categories,
-      // projects: randomProjects,
       events: randomEvents,
       teams: eventTeams,
+      reviews,
     },
     revalidate: 5,
   };

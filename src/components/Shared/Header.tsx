@@ -165,13 +165,18 @@ const Header: React.FC = () => {
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" href="/reviews">
+            <Link color="foreground" href="/customerReview">
               Reviews
             </Link>
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="/contact">
               Contact
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/eventTicket">
+              My Tickets
             </Link>
           </NavbarItem>
         </NavbarContent>
@@ -212,6 +217,11 @@ const Header: React.FC = () => {
           <NavbarItem>
             <Link color="foreground" href="/contact">
               Contact
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="/eventTicket">
+              My Tickets
             </Link>
           </NavbarItem>
 
