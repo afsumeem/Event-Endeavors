@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="mr-12 hidden lg:block font-bold">
             <span>Get connected with us on social networks:</span>
           </div>
-          {/* <!-- Social network icons container --> */}
+
           <div className="flex justify-center ">
             <a href="#!" className="mr-6 text-black text-xl">
               <FaFacebookF />
@@ -39,7 +39,6 @@ const Footer = () => {
 
         <div className="mx-6 py-10 text-center md:text-left">
           <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* <!-- TW elements section --> */}
             <div className="">
               <h6 className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start text-[#fd614a] text-xl">
                 Event Endeavors
@@ -51,7 +50,7 @@ const Footer = () => {
                 interest.
               </p>
             </div>
-            {/* <!-- Products section --> */}
+
             <div className="">
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start text-[#fd614a]">
                 Categories
@@ -69,7 +68,7 @@ const Footer = () => {
                 <a href="#!">Sports Event</a>
               </p>
             </div>
-            {/* <!-- Useful links section --> */}
+
             <div className="">
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start text-[#fd614a]">
                 Useful links
@@ -87,7 +86,7 @@ const Footer = () => {
                 <a href="#!">Venues</a>
               </p>
             </div>
-            {/* <!-- Contact section --> */}
+
             <div>
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start text-[#fd614a]">
                 Contact
@@ -110,9 +109,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* <!--Copyright section--> */}
         <div className="bg-[#ff9382] p-6 text-center dark:bg-neutral-700">
-          {/* <span>© 2023 Copyright:</span> */}
           Copyright &copy;2024 All Rights Reserved | This Website is made with
           &#x003C;&#10083;&#x003E; by Afsana Meem
         </div>
