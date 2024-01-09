@@ -11,3 +11,18 @@
 body {
   font-family: "Prata", serif;
 }
+
+.singleEventContainer {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  background-image: linear-gradient(#691b0f96, rgba(0, 0, 0, 0.87)),
+    url("/assets/images/about.jpg");
+  background-color: #fd614a;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}

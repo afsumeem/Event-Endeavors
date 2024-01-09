@@ -18,16 +18,17 @@ import {
   Input,
   Select,
   SelectItem,
+  Link,
 } from "@nextui-org/react";
 import { MdOutlineEmail } from "react-icons/md";
-import { useEffect, useState } from "react";
-import { useAppDispatch } from "@/redux/hook";
+import { useState } from "react";
 import { useGetEventsQuery } from "@/redux/features/events/eventApi";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "@/firebase/firebase.auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { usePostRegistrationMutation } from "@/redux/features/guests/guestApi";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 //
 
@@ -78,7 +79,11 @@ const AllEvents = ({ categories }: IProps) => {
         guestId: guestId,
       };
       await guestRegister(options);
-      alert("Registration successful");
+      Swal.fire({
+        title: "Good job!",
+        text: "Registration Successful!",
+        icon: "success",
+      });
       router.push("/eventTicket");
       reset();
     } catch (error) {
@@ -152,40 +157,43 @@ const AllEvents = ({ categories }: IProps) => {
         {isLoading ? (
           <h2>loading....</h2>
         ) : (
-          <div className=" gap-2 grid grid-cols-12 grid-rows-2 px-8">
+          <div className="mt-4 gap-2 grid grid-cols-12  grid-rows-2 px-8">
             {data?.map((event: IEvents, i: number) => (
               <Card
-                className="col-span-12 sm:col-span-4 border-none m-2 p-2"
+                className="col-span-12 md:col-span-6 lg:col-span-4 2xl:col-span-3 border-none m-2 p-2"
                 key={i}
               >
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                  <p className="text-tiny uppercase font-bold">
-                    {event.category}
-                  </p>
-                  <small className="text-default-500">{event.venue}</small>
-                  <small className="text-default-900">{event.date}</small>
-
-                  <h4 className="font-bold text-large mt-3">{event.title}</h4>
+                  <h4 className="font-bold text-large mt-3 text-[#fd614a] ">
+                    {event.title}
+                  </h4>
                 </CardHeader>
 
                 <CardBody className="overflow-visible py-2">
-                  <Image
-                    alt="Card background"
-                    className="object-cover rounded-xl mb-4"
-                    src={event.image}
-                    // width={270}
-                  />
-                  <p className="text-justify">{event.details}</p>
+                  <Link href={`/events/${event._id}`}>
+                    <Image
+                      alt="Card background"
+                      className="object-cover rounded-xl mb-4 w-full h-64"
+                      src={event.image}
+                      // width={270}
+                    />
+                  </Link>
+                  <h3 className="mb-2">{event.category}</h3>
+                  <hr />
+                  <p className="text-justify mt-4">{event.details}</p>
                 </CardBody>
                 <hr />
-                <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-                  <p className="text-tiny">Coming soon..</p>
+                <CardFooter className="justify-between gap-2">
                   <Button
-                    className="text-tiny text-white bg-indigo-900"
-                    variant="flat"
+                    as={Link}
+                    href={`/events/${event._id}`}
+                    className="text-white bg-[#fd614a] rounded-md"
+                  >
+                    See Details
+                  </Button>
+                  <Button
+                    className="border border-[#fd614a] bg-inherit text-black rounded-md"
                     color="default"
-                    radius="lg"
-                    size="sm"
                     onPress={() => handleRegisterClick(event)}
                   >
                     Register Now
