@@ -4,6 +4,15 @@ const guestApi = api.injectEndpoints({
   endpoints: (builder) => ({
     // get guests
 
+    getGuest: builder.query({
+      query: () => ({
+        url: "/guests",
+        providesTags: ["guests"],
+      }),
+    }),
+
+    //
+
     postRegistration: builder.mutation({
       query: (data) => ({
         url: "/guests",
@@ -14,4 +23,4 @@ const guestApi = api.injectEndpoints({
   }),
 });
 
-export const { usePostRegistrationMutation } = guestApi;
+export const { usePostRegistrationMutation, useGetGuestQuery } = guestApi;

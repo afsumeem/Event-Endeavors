@@ -21,7 +21,7 @@ const NewsLetter = () => {
           Register Now
         </Button>
       </div>
-      <div className="bg-[#fd614a] -mt-14 mx-32 p-12">
+      <div className="bg-[#fd614a] -mt-14 mx-5 md:mx-32 p-12">
         <h1 className="text-center text-white font-bold text-2xl">
           Don&apos;t miss our future updates! Get subscribed today!
         </h1>

@@ -12,8 +12,8 @@ const Footer = () => {
   return (
     <div className="pt-10 mt-10">
       {/* <!-- Footer container --> */}
-      <footer className="bg-[#ffbab0] text-center text-black dark:bg-neutral-600 lg:text-left">
-        <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between bg-[#ff9382]">
+      <footer className="bg-[#ffcbc3] text-center text-black lg:text-left">
+        <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between bg-[#faa092]">
           <div className="mr-12 hidden lg:block font-bold">
             <span>Get connected with us on social networks:</span>
           </div>
@@ -109,7 +109,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="bg-[#ff9382] p-6 text-center dark:bg-neutral-700">
+        <div className="bg-[#faa092] p-6 text-center dark:bg-neutral-700">
           Copyright &copy;2024 All Rights Reserved | This Website is made with
           &#x003C;&#10083;&#x003E; by Afsana Meem
         </div>

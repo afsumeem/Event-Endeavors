@@ -9,6 +9,7 @@ import Teams from "@/components/UI/Teams";
 import Footer from "@/components/Shared/Footer";
 import NewsLetter from "@/components/UI/NewsLetter";
 import CustomerReview from "@/components/UI/Review";
+import Gallery from "@/components/UI/Gallery";
 
 interface IProps {
   events: IEvents[];
@@ -48,6 +49,7 @@ const HomePage = ({ events, teams, reviews }: IProps) => {
         <CustomerReview reviews={reviews} />
         <Teams teams={teams} />
         <NewsLetter />
+        <Gallery />
         <Footer />
       </div>
     </>

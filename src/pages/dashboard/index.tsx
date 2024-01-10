@@ -1,104 +1,143 @@
-import React, { useState } from "react";
-import {
-  IoIosHome,
-  IoIosArrowDown,
-  IoIosAnalytics,
-  IoIosDocument,
-  IoIosSettings,
-  IoIosPerson,
-} from "react-icons/io";
+import Dashboard from "@/components/Layouts/Dashboard";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { MdEvent } from "react-icons/md";
+import AnimatedNumbers from "react-animated-numbers";
+import { BiCategoryAlt } from "react-icons/bi";
+import { IoPeople } from "react-icons/io5";
+import { FaLocationDot } from "react-icons/fa6";
+import useAdminRoute from "../adminRoute/Layout";
+import { Spinner } from "@nextui-org/react";
+
+//
+
 const DashboardUI = () => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
+  const loadingPage = useAdminRoute();
+
+  if (loadingPage) {
+    return <Spinner className="block m-auto mt-40 mx-40" />;
+  }
   return (
     <div>
-      <aside className="w-64  h-[600px] bg-gray-200">
-        {/* Sidebar Header */}
-        <div className="p-4 border-b border-gray-700">
-          <h1 className="text-2xl font-semibold text-center">
-            Event Endeavors
-          </h1>
-        </div>
-
-        {/* Sidebar Links */}
-        <nav className="p-4">
-          {/* Breadcrumb for small devices */}
-          <div className="md:hidden flex items-center justify-between">
-            <button className="text-white" onClick={toggleDropdown}>
-              <IoIosArrowDown size={24} />
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute top-32 left-0 bg-gray-200 p-2 mt-2">
-                {/* Dropdown menu links */}
-                <a
-                  href="/home"
-                  className="block py-2 px-4 text-sm hover:bg-gray-300"
-                >
-                  Home
-                </a>
-                <a
-                  href="#"
-                  className="block py-2 px-4 text-sm hover:bg-gray-300"
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="#"
-                  className="block py-2 px-4 text-sm hover:bg-gray-300"
-                >
-                  Analytics
-                </a>
-                <a
-                  href="#"
-                  className="block py-2 px-4 text-sm hover:bg-gray-300"
-                >
-                  Documents
-                </a>
-                <a
-                  href="#"
-                  className="block py-2 px-4 text-sm hover:bg-gray-300"
-                >
-                  Settings
-                </a>
-              </div>
-            )}
+      <div className="gap-2 grid grid-cols-1 sm:grid-cols-4 mt-5 mx-5">
+        <Card
+          shadow="sm"
+          className=" flex flex-col justify-center items-center py-2  bg-[#f8dbd6]"
+        >
+          <div className="p-3 border-3 shadow-xl bg-[#ffdbd4] border-[#ffb6ab] rounded-full my-2">
+            <h2 className="text-xl">
+              {" "}
+              <MdEvent />
+            </h2>
           </div>
 
-          {/* Sidebar links for medium and larger devices */}
-          <div className="hidden md:block">
-            <a href="#" className="flex py-2 px-4 text-sm hover:bg-gray-300">
-              <IoIosHome size={20} className="mr-2" />
-              Home
-            </a>
-            <a href="#" className="flex py-2 px-4 text-sm hover:bg-gray-300">
-              <IoIosAnalytics size={20} className="mr-2" />
-              Dashboard
-            </a>
-            <a
-              href="dashboard/addNewEvent"
-              className="flex py-2 px-4 text-sm hover:bg-gray-300"
-            >
-              <IoIosDocument size={20} className="mr-2" />
-              Add New Event
-            </a>
-            <a
-              href="#"
-              className="flex py-2 px-4 m-0 text-sm hover:bg-gray-300"
-            >
-              <IoIosSettings size={20} className="mr-2" />
-              Mange Guests
-            </a>
-            <a href="#" className="flex py-2 px-4 text-sm hover:bg-gray-300">
-              <IoIosPerson size={20} className="mr-2" />
-              Update Profile
-            </a>
+          <h2 className="text-2xl my-2">30</h2>
+          {/* <AnimatedNumbers
+                includeComma
+                // className={styles.container}
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={30}
+                fontStyle={{
+                  fontSize: 40,
+                  color: "black",
+                }}
+              /> */}
+
+          <b>Total Event</b>
+        </Card>
+        <Card
+          shadow="sm"
+          className=" flex flex-col justify-center items-center py-2  bg-[#f8f3d6]"
+        >
+          <div className="p-3 border-3 shadow-xl bg-[#faf2c5] border-[#fff9ab] rounded-full my-2">
+            <h2 className="text-xl">
+              {" "}
+              <BiCategoryAlt />
+            </h2>
           </div>
-        </nav>
-      </aside>
+
+          <h2 className="text-2xl my-2">200+</h2>
+          {/* <AnimatedNumbers
+                includeComma
+                // className={styles.container}
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={30}
+                fontStyle={{
+                  fontSize: 40,
+                  color: "black",
+                }}
+              /> */}
+
+          <b>Reviews</b>
+        </Card>
+        <Card
+          shadow="sm"
+          className=" flex flex-col justify-center items-center py-2  bg-[#d6daf8]"
+        >
+          <div className="p-3 border-3 shadow-xl bg-[#d6daf8] border-[#abb8ff] rounded-full my-2">
+            <h2 className="text-xl">
+              {" "}
+              <IoPeople />
+            </h2>
+          </div>
+
+          <h2 className="text-2xl my-2">2000+</h2>
+          {/* <AnimatedNumbers
+                includeComma
+                // className={styles.container}
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={30}
+                fontStyle={{
+                  fontSize: 40,
+                  color: "black",
+                }}
+              /> */}
+
+          <b>Total Guests</b>
+        </Card>
+        <Card
+          shadow="sm"
+          className=" flex flex-col justify-center items-center py-2  bg-[#f8d6f0]"
+        >
+          <div className="p-3 border-3 shadow-xl bg-[#f8d6f0] border-[#ffabed] rounded-full my-2">
+            <h2 className="text-xl">
+              {" "}
+              <FaLocationDot />
+            </h2>
+          </div>
+
+          <h2 className="text-2xl my-2">15+</h2>
+          {/* <AnimatedNumbers
+                includeComma
+                // className={styles.container}
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={30}
+                fontStyle={{
+                  fontSize: 40,
+                  color: "black",
+                }}
+              /> */}
+
+          <b>Venues</b>
+        </Card>
+      </div>
     </div>
   );
 };
 
 export default DashboardUI;
+
+DashboardUI.getLayout = function getLayout(page: React.ReactElement) {
+  return <Dashboard>{page}</Dashboard>;
+};

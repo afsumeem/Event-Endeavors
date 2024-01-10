@@ -1,7 +1,7 @@
 import Dashboard from "@/components/Layouts/Dashboard";
-import RootLayout from "@/components/Layouts/RootLayout";
+
 import auth from "@/firebase/firebase.auth";
-import usePrivateRoute from "@/privateRoute/layout";
+
 import { usePostEventMutation } from "@/redux/features/events/eventApi";
 import {
   BreadcrumbItem,
@@ -14,7 +14,8 @@ import Head from "next/head";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { MdOutlineEmail } from "react-icons/md";
+import { Spinner } from "@nextui-org/react";
+import useAdminRoute from "../adminRoute/Layout";
 
 //
 type AddEventValues = {
@@ -56,10 +57,10 @@ const AddNewEvent = () => {
 
   //
 
-  const loading = usePrivateRoute();
+  const loadingPage = useAdminRoute();
 
-  if (loading) {
-    return "loading";
+  if (loadingPage) {
+    return <Spinner className="block m-auto mt-40 mx-40" />;
   }
 
   return (
@@ -70,54 +71,67 @@ const AddNewEvent = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Breadcrumbs>
+      <Breadcrumbs className="mt-5 ml-5">
         <BreadcrumbItem>Dashboard</BreadcrumbItem>
-        <BreadcrumbItem>add New Event</BreadcrumbItem>
+        <BreadcrumbItem>Add New Event</BreadcrumbItem>
       </Breadcrumbs>
 
-      <h2 className="text-center">Add new event</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          {...register("title", { required: true })}
-          autoFocus
-          label="Title"
-          placeholder="Enter the event Title"
-          variant="bordered"
-        />
-        <Input
-          {...register("category", { required: true })}
-          autoFocus
-          label="Category"
-          placeholder="Enter the event category"
-          variant="bordered"
-        />
-        <Input
-          {...register("venue", { required: true })}
-          autoFocus
-          label="Venue"
-          placeholder="Venue"
-          variant="bordered"
-        />
+      {/* <h2 className="text-center my-10 text-2xl md:text-3xl lg:text-4xl font-bold text-[#fd614a]">
+        Add new event
+      </h2> */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-2/3 block m-auto mt-10"
+      >
+        <div className="flex flex-col md:flex-row gap-2">
+          <Input
+            {...register("title", { required: true })}
+            autoFocus
+            label="Title"
+            // placeholder="Enter the event Title"
+            variant="bordered"
+            className="mb-2 "
+          />
+          <Input
+            {...register("category", { required: true })}
+            autoFocus
+            label="Category"
+            // placeholder="Enter the event category"
+            variant="bordered"
+          />
+        </div>
+
         <Textarea
           {...register("details", { required: true })}
           variant="bordered"
           label="Details"
-          placeholder="Enter your description"
+          // placeholder="Enter your description"
           className="col-span-12 md:col-span-6 mb-6 md:mb-0"
         />
-        <Input
-          {...register("image", { required: true })}
-          autoFocus
-          label="Image Link"
-          placeholder="Event details"
-          variant="bordered"
-        />
+        <div className="flex flex-col md:flex-row gap-2 my-2">
+          <Input
+            {...register("image", { required: true })}
+            autoFocus
+            label="Image Link"
+            // placeholder="Event details"
+            variant="bordered"
+          />
+          <Input
+            {...register("venue", { required: true })}
+            autoFocus
+            label="Venue"
+            // placeholder="Venue"
+            variant="bordered"
+          />
+        </div>
+
         <Input
           {...register("date", { required: true })}
           type="datetime-local"
           autoFocus
-          label="Date"
-          placeholder="Event date"
+          // label="Date"
+          // placeholder="Event date"
+          className="mb-2"
           variant="bordered"
         />
         <Input
@@ -125,10 +139,12 @@ const AddNewEvent = () => {
           autoFocus
           label="Admin Email"
           value={user?.email ?? ""}
-          placeholder="Admin Email"
+          // placeholder="Admin Email"
           variant="bordered"
+          className="mb-2"
         />
-        <Button type="submit" color="primary">
+
+        <Button type="submit" className="text-white bg-[#fd614a] rounded-md">
           Submit Event
         </Button>
       </form>

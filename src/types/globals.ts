@@ -24,3 +24,14 @@ export interface IReviews {
   image: string;
   rating: number;
 }
+
+export interface IGuest {
+  _id: string;
+  title: string;
+  name: string;
+  guestEmail: string;
+  address: string;
+  contact: number;
+  admin: number;
+  guestId: number;
+}
