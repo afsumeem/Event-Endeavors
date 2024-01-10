@@ -6,6 +6,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import { Link } from "@nextui-org/react";
 
 //
 const Footer = () => {
@@ -55,18 +56,10 @@ const Footer = () => {
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start text-[#fd614a]">
                 Categories
               </h6>
-              <p className="mb-4">
-                <a href="#!">Tech Conference</a>
-              </p>
-              <p className="mb-4">
-                <a href="#!">Music Concert</a>
-              </p>
-              <p className="mb-4">
-                <a href="#!">Food Festival</a>
-              </p>
-              <p>
-                <a href="#!">Sports Event</a>
-              </p>
+              <p className="mb-4">Tech Conference</p>
+              <p className="mb-4">Music Concert</p>
+              <p className="mb-4">Food Festival</p>
+              <p>Sports Event</p>
             </div>
 
             <div className="">
@@ -74,16 +67,24 @@ const Footer = () => {
                 Useful links
               </h6>
               <p className="mb-4">
-                <a href="#!">Home</a>
+                <Link href="/" className="text-black">
+                  Home
+                </Link>
               </p>
               <p className="mb-4">
-                <a href="#!">About</a>
+                <Link href="/about" className="text-black">
+                  About{" "}
+                </Link>
               </p>
               <p className="mb-4">
-                <a href="#!">Events</a>
+                <Link href="/events" className="text-black">
+                  Events{" "}
+                </Link>
               </p>
               <p>
-                <a href="#!">Venues</a>
+                <Link href="/venues" className="text-black">
+                  Venues{" "}
+                </Link>
               </p>
             </div>
 

@@ -75,10 +75,14 @@ const ManageGuest = ({ guests }: IProps) => {
           <TableColumn key="address">Address</TableColumn>
           <TableColumn key="contact">Contact</TableColumn>
           <TableColumn key="guestId">GuestId</TableColumn>
+          <TableColumn>Action</TableColumn>
         </TableHeader>
         <TableBody items={items}>
           {(item) => (
-            <TableRow key={item.name}>
+            <TableRow
+              key={item.name}
+              className="border-b hover:bg-[#f7b9b0] cursor-pointer duration-200"
+            >
               {(columnKey) => (
                 <TableCell>{getKeyValue(item, columnKey)}</TableCell>
               )}

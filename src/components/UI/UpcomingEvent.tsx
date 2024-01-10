@@ -12,6 +12,8 @@ import {
   ModalHeader,
   useDisclosure,
   ModalBody,
+  CardBody,
+  Link,
 } from "@nextui-org/react";
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
@@ -32,34 +34,45 @@ const UpcomingEvent = ({ events }: IProps) => {
       <div className=" gap-6 grid grid-cols-12 grid-rows-2 px-8">
         {events.map((event, i) => (
           <Card
-            className="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 h-auto bg-black p-0"
+            className="col-span-12 md:col-span-6 lg:col-span-4 2xl:col-span-3 border-none m-2 p-2"
             key={i}
-            isPressable
-            onPress={() => console.log("item pressed")}
           >
-            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
-              <p className="text-tiny text-white/80 uppercase font-bold">
-                {event.category}
-              </p>
-              <h4 className="text-white font-medium text-large">
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+              <h4 className="font-bold text-large mt-3 text-[#fd614a] ">
                 {event.title}
               </h4>
             </CardHeader>
-            <Image
-              isBlurred
-              removeWrapper
-              alt="Card background"
-              className="z-0 w-full h-full object-cover "
-              style={{ opacity: ".5" }}
-              src={event.image}
-            />
-            <CardFooter className="absolute z-10 bottom-1">
-              <div className="inline-flex gap-1 items-center justify-center p-0 m-0 ">
-                <CiLocationOn className="text-xl text-white" />
-                <h4 className="text-white font-medium text-small p-0 m-0 leading-none">
-                  {event.venue}
-                </h4>
-              </div>
+
+            <CardBody className="overflow-visible py-2">
+              <Link href={`/events/${event._id}`}>
+                <Image
+                  alt="Card background"
+                  className="object-cover rounded-xl mb-4 w-full h-64"
+                  src={event.image}
+                  // width={270}
+                />
+              </Link>
+              <h3 className="mb-2">{event.category}</h3>
+              <hr />
+              <p className="text-justify mt-4">{event.details}</p>
+            </CardBody>
+            <hr />
+            <CardFooter className="justify-between gap-2">
+              <Button
+                as={Link}
+                href={`/events/${event._id}`}
+                className="text-white bg-[#fd614a] rounded-md"
+              >
+                See Details
+              </Button>
+              <Button
+                className="border hover:bg-[#fd614a] duration-250 hover:text-white border-[#fd614a] bg-inherit text-black rounded-md"
+                color="default"
+                as={Link}
+                href="/events"
+              >
+                View All Events
+              </Button>
             </CardFooter>
           </Card>
         ))}

@@ -10,6 +10,7 @@ import Footer from "@/components/Shared/Footer";
 import NewsLetter from "@/components/UI/NewsLetter";
 import CustomerReview from "@/components/UI/Review";
 import Gallery from "@/components/UI/Gallery";
+import Facilities2 from "@/components/UI/Facilities2";
 
 interface IProps {
   events: IEvents[];
@@ -45,9 +46,9 @@ const HomePage = ({ events, teams, reviews }: IProps) => {
         <Banner />
         <Facilities />
         <UpcomingEvent events={events} />
-
-        <CustomerReview reviews={reviews} />
+        <Facilities2 />
         <Teams teams={teams} />
+        <CustomerReview reviews={reviews} />
         <NewsLetter />
         <Gallery />
         <Footer />

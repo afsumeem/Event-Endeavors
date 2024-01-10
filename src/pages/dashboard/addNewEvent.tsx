@@ -16,6 +16,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Spinner } from "@nextui-org/react";
 import useAdminRoute from "../adminRoute/Layout";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 //
 type AddEventValues = {
@@ -30,6 +32,7 @@ type AddEventValues = {
 
 const AddNewEvent = () => {
   const [user] = useAuthState(auth);
+  const router = useRouter();
   const [postEvent, options] = usePostEventMutation();
   const { register, handleSubmit, reset } = useForm<AddEventValues>();
 
@@ -47,9 +50,14 @@ const AddNewEvent = () => {
         admin: data.admin,
       };
       await postEvent(options);
-      alert("event added successfully");
-      console.log(data);
+      Swal.fire({
+        title: "Good job!",
+        text: "Registration Successful!",
+        icon: "success",
+      });
+
       reset();
+      router.push("/events");
     } catch (error) {
       console.error("Error occurred during event added:", error);
     }

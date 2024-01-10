@@ -81,17 +81,6 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                       <span className="text-sm ml-2">Manage Events</span>
                     </Link>
                   </li>
-                  <li className="flex w-full justify-between text-gray-300 cursor-pointer items-center mb-6">
-                    <Link
-                      href="/dashboard/manageRegisteredEvent"
-                      className="flex items-center focus:outline-none p-1 focus:ring-1 text-white focus:ring-white"
-                    >
-                      <MdOutlineManageHistory />
-                      <span className="text-sm ml-2">
-                        Manage Registered Events
-                      </span>
-                    </Link>
-                  </li>
                 </ul>
                 <div className="flex justify-center mt-20 mb-4 w-full">
                   <div className="relative">
@@ -215,17 +204,6 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
                       >
                         <MdEventRepeat />
                         <span className="text-sm ml-2">Manage Events</span>
-                      </Link>
-                    </li>
-                    <li className="flex w-full justify-between text-gray-300 cursor-pointer items-center mb-6">
-                      <Link
-                        href="/dashboard/manageRegisteredEvent"
-                        className="flex items-center focus:outline-none p-1 focus:ring-1 text-white focus:ring-white"
-                      >
-                        <MdOutlineManageHistory />
-                        <span className="text-sm ml-2">
-                          Manage Registered Events
-                        </span>
                       </Link>
                     </li>
                   </ul>
