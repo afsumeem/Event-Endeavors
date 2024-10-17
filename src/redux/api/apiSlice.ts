@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/",
+    baseUrl: "https://event-endeavors.vercel.app/",
   }),
-  tagTypes: ["events", "reviews", "guests"],
+  tagTypes: ["events", "reviews", "guests", "profile"],
   endpoints: () => ({}),
 });

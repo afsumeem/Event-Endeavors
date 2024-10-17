@@ -9,10 +9,10 @@ import auth from "@/firebase/firebase.auth";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import React from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import React, { useState } from "react";
+import { FaRegCopy } from "react-icons/fa";
+
 //
 
 interface IFormInput {
@@ -23,6 +23,41 @@ interface IFormInput {
 //
 const LoginPage = () => {
   const router = useRouter();
+
+  // user
+  const [userId, setUserId] = useState("user@event.com");
+  const [password, setPassword] = useState("abcd1234");
+  const [userIdCopied, setUserIdCopied] = useState(false);
+  const [passwordCopied, setPasswordCopied] = useState(false);
+
+  // admin
+  const [adminId, setAdminId] = useState("admin@event.com");
+  const [adminPassword, setAdminPassword] = useState("abcd1234");
+  const [adminIdCopied, setAdminIdCopied] = useState(false);
+  const [adminPasswordCopied, setAdminPasswordCopied] = useState(false);
+
+  //
+  // user
+  const handleCopyUserId = () => {
+    setUserIdCopied(true);
+    setTimeout(() => setUserIdCopied(false), 1000);
+  };
+
+  const handleCopyPassword = () => {
+    setPasswordCopied(true);
+    setTimeout(() => setPasswordCopied(false), 1000);
+  };
+
+  // admin
+  const handleCopyAdminId = () => {
+    setAdminIdCopied(true);
+    setTimeout(() => setAdminIdCopied(false), 1000);
+  };
+
+  const handleCopyAdminPassword = () => {
+    setAdminPasswordCopied(true);
+    setTimeout(() => setAdminPasswordCopied(false), 1000);
+  };
   //
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -107,10 +142,10 @@ const LoginPage = () => {
           <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
         </div>
         <div className="w-full py-6 z-20">
-          <h1 className="my-2 font-bold text-3xl text-[#fd614a]">
+          <h1 className="my-1 font-bold text-3xl text-[#fd614a]">
             Login To Continue
           </h1>
-          <div className="py-6 space-x-2">
+          <div className="py-3 space-x-2">
             <span className="w-10 h-10 items-center justify-center inline-flex rounded-full font-bold text-lg border-2 border-white cursor-pointer">
               <FaGoogle
                 onClick={async () => {
@@ -126,6 +161,7 @@ const LoginPage = () => {
             </span>
           </div>
           <p className="text-gray-100">Or Use Your Email Account</p>
+
           <form
             action=""
             className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
@@ -133,17 +169,19 @@ const LoginPage = () => {
           >
             <Input
               {...register("email", { required: true })}
+              size="sm"
               type="email"
               variant="underlined"
               label="Email"
-              placeholder="Enter your email"
-              className="block w-full p-4 text-lg rounded-sm bg-white mb-4"
+              // placeholder="Enter your email"
+              className="block w-full p-2 text-lg rounded-sm bg-white mb-4"
             />
             <Input
               {...register("password", { required: true })}
               label="Password"
+              size="sm"
               variant="underlined"
-              placeholder="Enter your password"
+              // placeholder="Enter your password"
               endContent={
                 <button
                   className="focus:outline-none"
@@ -158,7 +196,7 @@ const LoginPage = () => {
                 </button>
               }
               type={isVisible ? "text" : "password"}
-              className="block w-full p-4 text-lg rounded-sm bg-white"
+              className="block w-full p-2 text-lg rounded-sm bg-white"
             />
             <div className="text-right text-gray-400 hover:underline hover:text-gray-100 mt-3">
               <a href="#">Forgot your password?</a>
@@ -191,6 +229,42 @@ const LoginPage = () => {
               </span>
             </div>
           </form>
+          <div className="bg-[#ffc6be] p-2 w-fit block m-auto mt-1">
+            <div className="flex justify-center items-center">
+              <p className="text-sm text-black">{userId}</p>
+              <Button className="bg-inherit  text-xl">
+                <CopyToClipboard text={userId} onCopy={handleCopyUserId}>
+                  <FaRegCopy />
+                </CopyToClipboard>
+              </Button>
+              <p className="text-sm text-black">{password} </p>
+              <Button className="bg-inherit text-xl">
+                <CopyToClipboard text={password} onCopy={handleCopyPassword}>
+                  <FaRegCopy />
+                </CopyToClipboard>
+              </Button>
+            </div>
+
+            {/* admin credential */}
+            <div className="flex  justify-center items-center">
+              <p className="text-sm text-black">{adminId} </p>
+              <Button className="bg-inherit  text-xl">
+                <CopyToClipboard text={adminId} onCopy={handleCopyAdminId}>
+                  <FaRegCopy />
+                </CopyToClipboard>
+              </Button>
+
+              <p className="text-sm text-black">{adminPassword} </p>
+              <Button className="bg-inherit  text-xl">
+                <CopyToClipboard
+                  text={adminPassword}
+                  onCopy={handleCopyAdminPassword}
+                >
+                  <FaRegCopy />
+                </CopyToClipboard>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

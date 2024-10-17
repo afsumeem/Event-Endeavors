@@ -71,11 +71,15 @@ const SingleEvent = ({ event }: IProps) => {
       };
       await guestRegister(options);
       Swal.fire({
-        title: "Good job!",
-        text: "Registration Successful!",
+        title: "Registration Successful!",
+        html: `
+          Print your,
+          <a href="/eventTicket" style="color:blue"><b>Ticket</b></a>
+        `,
         icon: "success",
+        showConfirmButton: false,
       });
-      router.push("/eventTicket");
+
       reset();
     } catch (error) {
       console.error("Error occurred during event registration:", error);
@@ -216,7 +220,7 @@ SingleEvent.getLayout = function getLayout(page: React.ReactElement) {
 //
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("http://localhost:5000/events");
+  const res = await fetch("https://event-endeavors.vercel.app/events");
   const events = await res.json();
 
   const paths = events?.map((event: IEvents) => ({
@@ -230,7 +234,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context;
 
-  const res = await fetch(`http://localhost:5000/events/${params?.id}`);
+  const res = await fetch(
+    `https://event-endeavors.vercel.app/events/${params?.id}`
+  );
   const event = await res.json();
 
   return { props: { event } };

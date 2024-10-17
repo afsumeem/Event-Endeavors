@@ -93,9 +93,9 @@ AboutPage.getLayout = function getLayout(page: React.ReactElement) {
 
 //
 
-export const getStaticProps: GetStaticProps<IProps> = async () => {
+export const getStaticProps = async () => {
   //teams
-  const teams = await fetch("http://localhost:5000/teams");
+  const teams = await fetch("https://event-endeavors.vercel.app/teams");
   const eventTeams = await teams.json();
 
   return {

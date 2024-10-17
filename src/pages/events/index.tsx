@@ -43,12 +43,15 @@ type RegistrationValues = {
   address: string;
   contact: string;
   admin: string;
+  venue: string;
+  date: string;
+  image: string;
 };
 //
 
 const AllEvents = ({ categories }: IProps) => {
   const [user] = useAuthState(auth);
-  const router = useRouter();
+  // const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedEvent, setSelectedEvent] = useState<IEvents | null>(null);
 
@@ -76,15 +79,22 @@ const AllEvents = ({ categories }: IProps) => {
         address: data.address,
         contact: data.contact,
         admin: data.admin,
+        venue: data.venue,
+        date: data.date,
+        image: data.image,
         guestId: guestId,
       };
       await guestRegister(options);
       Swal.fire({
-        title: "Good job!",
-        text: "Registration Successful!",
+        title: "Registration Successful!",
+        html: `
+          Print your,
+          <a href="/eventTicket" style="color:blue"><b>Ticket</b></a>
+        `,
         icon: "success",
+        showConfirmButton: false,
       });
-      router.push("/eventTicket");
+      // router.push("/eventTicket");
       reset();
     } catch (error) {
       console.error("Error occurred during event registration:", error);
@@ -204,7 +214,12 @@ const AllEvents = ({ categories }: IProps) => {
           </div>
         )}
       </div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placement="top-center"
+        className="bg-[#fcf2f1]"
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -262,6 +277,31 @@ const AllEvents = ({ categories }: IProps) => {
                     placeholder="Admin Email"
                     variant="bordered"
                   />
+                  {/*  */}
+                  <Input
+                    className="hidden"
+                    {...register("venue", { required: true })}
+                    autoFocus
+                    value={selectedEvent?.venue ?? ""}
+                    label="Venue"
+                    variant="bordered"
+                  />
+                  <Input
+                    className="hidden"
+                    {...register("date", { required: true })}
+                    autoFocus
+                    value={selectedEvent?.date ?? ""}
+                    label="Date"
+                    variant="bordered"
+                  />
+                  <Input
+                    className="hidden"
+                    {...register("image", { required: true })}
+                    autoFocus
+                    value={selectedEvent?.image ?? ""}
+                    label="image"
+                    variant="bordered"
+                  />
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" variant="flat" onPress={onClose}>
@@ -288,7 +328,7 @@ AllEvents.getLayout = function getLayout(page: React.ReactElement) {
 
 export const getStaticProps: GetStaticProps<IProps> = async () => {
   //fetch events
-  const result = await fetch("http://localhost:5000/events");
+  const result = await fetch("https://event-endeavors.vercel.app/events");
   const events = await result.json();
 
   //

@@ -38,19 +38,6 @@ const Header: React.FC = () => {
   //
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  // const menuItems = [
-  //   "Profile",
-  //   "Dashboard",
-  //   "Activity",
-  //   "Analytics",
-  //   "System",
-  //   "Deployments",
-  //   "My Settings",
-  //   "Team Settings",
-  //   "Help & Feedback",
-  //   "Log Out",
-  // ];
-  // const { data: session } = useSession();
 
   const calculateTimeRemaining = (): TimeRemaining => {
     const now = new Date().getTime();
@@ -94,9 +81,9 @@ const Header: React.FC = () => {
           <BsTelephone /> <span> +8801723456789</span>
         </h4>
         <div className={styles.topBar}>
-          <h4>Upcoming Event</h4>
+          {/* <h4>Upcoming Event</h4> */}
           {/* event timer */}
-          <div className={styles.eventTime}>
+          {/* <div className={styles.eventTime}>
             <div className={styles.countdownBox}>
               <div className={styles.countdownValue}>{timeRemaining.days}</div>
             </div>
@@ -117,7 +104,7 @@ const Header: React.FC = () => {
                 {timeRemaining.seconds}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* event timer */}
 
@@ -169,16 +156,18 @@ const Header: React.FC = () => {
               Reviews
             </Link>
           </NavbarItem>
-          <NavbarItem>
+          {/* <NavbarItem>
             <Link color="foreground" href="/contact">
               Contact
             </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="/eventTicket">
-              My Tickets
-            </Link>
-          </NavbarItem>
+          </NavbarItem> */}
+          {user?.email && (
+            <NavbarItem>
+              <Link color="foreground" href="/eventTicket">
+                My Tickets
+              </Link>
+            </NavbarItem>
+          )}
         </NavbarContent>
 
         {/*  */}
@@ -214,16 +203,18 @@ const Header: React.FC = () => {
               Reviews
             </Link>
           </NavbarItem>
-          <NavbarItem>
+          {/* <NavbarItem>
             <Link color="foreground" href="/contact">
               Contact
             </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="/eventTicket">
-              My Tickets
-            </Link>
-          </NavbarItem>
+          </NavbarItem> */}
+          {user?.email && (
+            <NavbarItem>
+              <Link color="foreground" href="/eventTicket">
+                My Tickets
+              </Link>
+            </NavbarItem>
+          )}
 
           {!user?.email && (
             <>

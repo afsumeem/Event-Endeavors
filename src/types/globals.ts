@@ -31,7 +31,10 @@ export interface IGuest {
   name: string;
   guestEmail: string;
   address: string;
-  contact: number;
-  admin: number;
-  guestId: number;
+  contact: string;
+  admin?: string;
+  guestId: string;
+  image?: string;
+  date?: string;
+  venue?: string;
 }

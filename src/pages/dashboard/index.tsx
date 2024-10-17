@@ -7,8 +7,58 @@ import { IoPeople } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
 import useAdminRoute from "../adminRoute/Layout";
 import { Spinner } from "@nextui-org/react";
-
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  PieChart,
+  Pie,
+  Sector,
+  Cell,
+} from "recharts";
 //
+const monthlyData = [
+  {
+    id: 1,
+    date: "Mar 21",
+    totalGuest: 1700,
+    RegisteredGuest: 5000,
+  },
+  {
+    id: 2,
+    date: "Apr 21",
+    totalGuest: 1000,
+    RegisteredGuest: 2350,
+  },
+  {
+    id: 3,
+    date: "May 21",
+    totalGuest: 600,
+    RegisteredGuest: 3350,
+  },
+  {
+    id: 4,
+    date: "Jun 21",
+    totalGuest: 1000,
+    RegisteredGuest: 2350,
+  },
+  {
+    id: 5,
+    date: "Jul 21",
+    totalGuest: 300,
+    RegisteredGuest: 1540,
+  },
+];
+
+const SuccessfulEvents = [
+  { name: "2022", guest: 7260300 },
+  { name: "2023", guest: 99004079 },
+];
 
 const DashboardUI = () => {
   const loadingPage = useAdminRoute();
@@ -132,6 +182,43 @@ const DashboardUI = () => {
           <b>Venues</b>
         </Card>
       </div>
+      <h5 className="my-5 text-xl ml-10">Monthly Event Statistics</h5>
+      {/* <div className="flex flex-col md:flex-row">
+        <div> */}
+      <ResponsiveContainer width="70%" aspect={2}>
+        <BarChart
+          data={monthlyData}
+          width={300}
+          height={100}
+          // margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" interval={0} width={200} />
+          <YAxis />
+          <Tooltip />
+          <Legend verticalAlign="top" height={36} />
+          <Bar dataKey="totalGuest" fill="#8884D8" barSize={25} />
+          <Bar dataKey="RegisteredGuest" fill="#82CDFF" barSize={25} />
+        </BarChart>
+      </ResponsiveContainer>
+      {/* </div> */}
+      {/* <div> */}
+      <div></div>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart width={100} height={250}>
+          <Pie
+            data={SuccessfulEvents}
+            dataKey="guest"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={50}
+            fill="#8884d8"
+          />
+        </PieChart>
+      </ResponsiveContainer>
+      {/* </div> */}
+      {/* </div> */}
     </div>
   );
 };

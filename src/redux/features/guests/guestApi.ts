@@ -7,7 +7,7 @@ const guestApi = api.injectEndpoints({
     getGuest: builder.query({
       query: () => ({
         url: "/guests",
-        providesTags: ["guests"],
+        // providesTags: ["guests"],
       }),
     }),
 

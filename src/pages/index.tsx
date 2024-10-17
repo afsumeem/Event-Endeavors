@@ -59,19 +59,23 @@ const HomePage = ({ events, teams, reviews }: IProps) => {
 
 export default HomePage;
 
-export const getStaticProps: GetStaticProps<IProps> = async () => {
-  //fetch services
-  const result = await fetch("http://localhost:5000/events");
+export const getStaticProps = async () => {
+  //fetch events
+  const result = await fetch("https://event-endeavors.vercel.app/events");
+
+  // if (!result.ok) {
+  //   throw new Error(`Failed to fetch events: ${result.status}`);
+  // }
+
   const events = await result.json();
+  // console.log(events);
   const randomEvents = events.slice(0, 6);
 
-  // //fetch categories
-  const res = await fetch("http://localhost:5000/reviews");
+  const res = await fetch("https://event-endeavors.vercel.app/reviews/");
   const reviews = await res.json();
 
   //teams
-
-  const teams = await fetch("http://localhost:5000/teams");
+  const teams = await fetch("https://event-endeavors.vercel.app/teams/");
   const eventTeams = await teams.json();
 
   return {

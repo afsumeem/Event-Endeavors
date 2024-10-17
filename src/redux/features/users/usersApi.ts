@@ -11,14 +11,14 @@ const usersApi = api.injectEndpoints({
         body: data,
       }),
     }),
-    // updateUser: builder.mutation({
-    //   query: ({ id, data }) => ({
-    //     url: `/users/updateUser/${id}`,
-    //     method: "PATCH",
-    //     body: data,
-    //   }),
-    //   invalidatesTags: ["profile"],
-    // }),
+    updateUser: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/users/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["profile"],
+    }),
 
     //
     getUsers: builder.query({
@@ -30,4 +30,5 @@ const usersApi = api.injectEndpoints({
   }),
 });
 
-export const { usePostUsersMutation, useGetUsersQuery } = usersApi;
+export const { usePostUsersMutation, useGetUsersQuery, useUpdateUserMutation } =
+  usersApi;

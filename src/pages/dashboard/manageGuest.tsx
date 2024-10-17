@@ -26,11 +26,6 @@ interface IProps {
 }
 
 const ManageGuest = ({ guests }: IProps) => {
-  const [user, loading, error] = useAuthState(auth);
-
-  const { data } = useGetGuestQuery({});
-  // console.log(data);
-  // console.log(guests);
   const [page, setPage] = useState(1);
   const rowsPerPage = 4;
 
@@ -75,7 +70,6 @@ const ManageGuest = ({ guests }: IProps) => {
           <TableColumn key="address">Address</TableColumn>
           <TableColumn key="contact">Contact</TableColumn>
           <TableColumn key="guestId">GuestId</TableColumn>
-          <TableColumn>Action</TableColumn>
         </TableHeader>
         <TableBody items={items}>
           {(item) => (
@@ -103,7 +97,7 @@ ManageGuest.getLayout = function getLayout(page: React.ReactElement) {
 export const getStaticProps: GetStaticProps<IProps> = async () => {
   //teams
 
-  const eventGuests = await fetch("http://localhost:5000/guests");
+  const eventGuests = await fetch("https://event-endeavors.vercel.app/guests");
   const guests = await eventGuests.json();
 
   return {

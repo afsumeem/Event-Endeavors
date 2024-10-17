@@ -15,7 +15,6 @@ import {
   CardBody,
   Link,
 } from "@nextui-org/react";
-import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
 
 //
